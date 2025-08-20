@@ -1,62 +1,31 @@
 import 'package:flutter/material.dart';
+import 'screens/splash_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const NaatApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class NaatApp extends StatelessWidget {
+  const NaatApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NaatU Microlearning',
+      title: 'Naat',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryColor: const Color(0xFF1E88E5),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E88E5)),
+        fontFamily: 'SourceSans',
+        useMaterial3: true,
       ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Naat Microlearning'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Logo
-            Image.asset('images/logo.png', width: 150), // Asegúrate de tener el logo en la carpeta 'assets'
-            SizedBox(height: 20), // Espaciado entre el logo y los botones
-
-            // Botones
-            ElevatedButton(
-              onPressed: () {
-                // Acción para el primer botón
-                //print('Botón 1 presionado');
-              },
-              child: Text('Comenzar Aprendizaje'),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                // Acción para el segundo botón
-                //print('Botón 2 presionado');
-              },
-              child: Text('Acceder a Configuración'),
-            ),
-          ],
-        ),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/home': (context) => const HomeScreen(),
+      },
     );
   }
 }
